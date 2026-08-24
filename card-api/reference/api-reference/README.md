@@ -20,18 +20,10 @@ Every request must contain the following parameters in the body:
 [common-parameters.md](common-parameters.md)
 {% endcontent-ref %}
 
-## User
+## Card API
 
-create and query order information .
 
-{% content-ref url="card-api/card.md" %}
-[card.md](card-api/card.md)
-{% endcontent-ref %}
 
-## Card
-
-Retrieve balance information on a specific crypto currency.
-
-{% content-ref url="card-api/card-user.md" %}
-[card-user.md](card-api/card-user.md)
+{% content-ref url="card-api/" %}
+[card-api](card-api/)
 {% endcontent-ref %}
