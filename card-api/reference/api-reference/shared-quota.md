@@ -1,5 +1,6 @@
 ---
 description: API endpoints pertaining to the shared-quota.
+hidden: true
 ---
 
 # Shared Quota
@@ -72,7 +73,7 @@ Deposit funds into the Budget Quota. The deposited amount will become the availa
 
 Once the Budget Quota is funded, you can issue Shared Quota Cards under this quota.
 
-Each card’s spending limit can be adjusted through the [Top-up API](card-account.md#top-up-card). This top-up action does not deduct from the Budget Quota balance; it only defines the card’s spending limit.
+Each card’s spending limit can be adjusted through the [Top-up API](card-api/card-account.md#top-up-card). This top-up action does not deduct from the Budget Quota balance; it only defines the card’s spending limit.
 
 
 

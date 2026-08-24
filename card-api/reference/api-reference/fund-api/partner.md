@@ -5,11 +5,11 @@ description: Query the balance and deposit address of the partner.
 # Partner
 
 {% hint style="warning" %}
-Every request must contain [common parameters](common-parameters.md)
+Every request must contain [common parameters](../common-parameters.md)
 {% endhint %}
 
 {% hint style="info" %}
-Demo code can be found at [Github](./#demo-client)
+Demo code can be found at [Github](../#demo-client)
 {% endhint %}
 
 ## Partner Balance
@@ -44,11 +44,11 @@ Query the balance of the partner
 
 
 
-## Partner Address
+## Partner Main Address
 
 <mark style="color:green;">`POST`</mark> `/v1/balance/partner-address`
 
-Query the Address of the partner
+Query the main deposit address of the partner
 
 #### Request Body
 

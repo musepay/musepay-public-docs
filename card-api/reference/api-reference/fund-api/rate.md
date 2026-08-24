@@ -3,11 +3,11 @@
 
 
 {% hint style="warning" %}
-Every request must contain [common parameters](common-parameters.md)
+Every request must contain [common parameters](../common-parameters.md)
 {% endhint %}
 
 {% hint style="info" %}
-Demo code can be found at [Github](./#demo-client)
+Demo code can be found at [Github](../#demo-client)
 {% endhint %}
 
 ## Trade Rate

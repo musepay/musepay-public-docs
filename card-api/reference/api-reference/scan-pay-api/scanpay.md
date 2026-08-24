@@ -1,17 +1,11 @@
----
-description: >-
-  This chapter provides the API specifications for creating and querying
-  Scan-to-Pay orders.
----
-
 # ScanPay
 
 {% hint style="warning" %}
-Every request must contain [common parameters](common-parameters.md)
+Every request must contain [common parameters](../common-parameters.md)
 {% endhint %}
 
 {% hint style="info" %}
-Demo code can be found at [Github](./#demo-client)
+Demo code can be found at [Github](../#demo-client)
 {% endhint %}
 
 ## &#x20;Submit&#x20;

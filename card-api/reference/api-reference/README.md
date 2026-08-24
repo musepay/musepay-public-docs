@@ -24,14 +24,14 @@ Every request must contain the following parameters in the body:
 
 create and query order information .
 
-{% content-ref url="card.md" %}
-[card.md](card.md)
+{% content-ref url="card-api/card.md" %}
+[card.md](card-api/card.md)
 {% endcontent-ref %}
 
 ## Card
 
 Retrieve balance information on a specific crypto currency.
 
-{% content-ref url="card-user.md" %}
-[card-user.md](card-user.md)
+{% content-ref url="card-api/card-user.md" %}
+[card-user.md](card-api/card-user.md)
 {% endcontent-ref %}

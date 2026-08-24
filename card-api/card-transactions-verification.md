@@ -34,8 +34,8 @@ The Partner System forwards the verification message to the client:
 1. The client receives the verification request via the Partner System.
 2. The client confirms or declines the transaction.
 3. The Partner System sends the result to MuseCard via API:
-   * POST [/txn-verification-confirm](reference/api-reference/card.md#confirm-transaction) — to confirm the transaction.
-   * POST [/txn-verification-decline](reference/api-reference/card.md#reject-transaction) — to decline the transaction.
+   * POST [/txn-verification-confirm](reference/api-reference/card-api/card.md#confirm-transaction) — to confirm the transaction.
+   * POST [/txn-verification-decline](reference/api-reference/card-api/card.md#reject-transaction) — to decline the transaction.
 4. MuseCard processes the response and sends the result to VISA via callback.
 
 ***

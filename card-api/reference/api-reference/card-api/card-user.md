@@ -5,11 +5,11 @@ description: API endpoints pertaining to the cardholder.
 # Card User
 
 {% hint style="warning" %}
-Every request must contain [common parameters](common-parameters.md)
+Every request must contain [common parameters](../common-parameters.md)
 {% endhint %}
 
 {% hint style="info" %}
-Demo code can be found at [Github](./#demo-client)
+Demo code can be found at [Github](../#demo-client)
 {% endhint %}
 
 ## **Create User**
@@ -37,7 +37,7 @@ Demo code can be found at [Github](./#demo-client)
 | document.back                                                | String | <p>The back of a document file encoded in data URI base64 encoded format.</p><p></p><p>The back of a document file encoded in data URI base64 encoded format</p>                                         |
 | document.front<mark style="color:red;">\*</mark>             | String | <p>The front of a document file encoded <strong>in data URI base64 encoded format.</strong></p><p></p><p>The following mime types are accepted for ID documents:<br>image/jpeg,<br>image/png.</p><p></p> |
 | document.face                                                | String | <p>The selfie photo file encoded <strong>in data URI base64 encoded format.</strong></p><p></p><p>The following mime types are accepted for ID documents:<br>image/jpeg,<br>image/png.</p>               |
-| document.type<mark style="color:red;">\*</mark>              | String | 1 or 2, enums in [Document Type](../../enums/document-type.md)                                                                                                                                           |
+| document.type<mark style="color:red;">\*</mark>              | String | 1 or 2, enums in [Document Type](../../../enums/document-type.md)                                                                                                                                        |
 | document.expiry\_date<mark style="color:red;">\*</mark>      | String | Expiry date of identification document (YYYY-MM-DD)                                                                                                                                                      |
 | address                                                      | Object | Delivery address                                                                                                                                                                                         |
 | address.details                                              | String | Detail delivery address                                                                                                                                                                                  |
@@ -229,7 +229,7 @@ curl --location --request POST 'https://api.musepay.io/v1/carduser/create' \
 | document.number<mark style="color:red;">\*</mark>            | String | Identification document number.                                                                                                                                                                          |
 | document.back                                                | String | <p>The back of a document file encoded in data URI base64 encoded format.</p><p></p><p>The back of a document file encoded in data URI base64 encoded format</p>                                         |
 | document.front<mark style="color:red;">\*</mark>             | String | <p>The front of a document file encoded <strong>in data URI base64 encoded format.</strong></p><p></p><p>The following mime types are accepted for ID documents:<br>image/jpeg,<br>image/png.</p><p></p> |
-| document.type<mark style="color:red;">\*</mark>              | String | 1 or 2, enums in [Document Type](../../enums/document-type.md)                                                                                                                                           |
+| document.type<mark style="color:red;">\*</mark>              | String | 1 or 2, enums in [Document Type](../../../enums/document-type.md)                                                                                                                                        |
 | document.expiry\_date<mark style="color:red;">\*</mark>      | String | Expiry date of identification document (YYYY-MM-DD)                                                                                                                                                      |
 | address                                                      | Object | Delivery address                                                                                                                                                                                         |
 | address.details                                              | String | Detail delivery address                                                                                                                                                                                  |
