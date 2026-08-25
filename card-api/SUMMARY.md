@@ -24,7 +24,12 @@
       * [multiple chain checkout](reference/api-reference/acquiring-api/checkout-mode/multiple-chain-checkout.md)
       * [specified chain checkout](reference/api-reference/acquiring-api/checkout-mode/specified-chain-checkout.md)
     * [Query Order](reference/api-reference/acquiring-api/query-order.md)
-  * [Fiat Payout API](reference/api-reference/fiat-payout-api.md)
+  * [Fiat Payout API](reference/api-reference/fiat-payout-api/README.md)
+    * [Payout Quotations](reference/api-reference/fiat-payout-api/quotations.md)
+    * [Create Fiat Payout](reference/api-reference/fiat-payout-api/create-payout.md)
+    * [Upload Payout Attachment](reference/api-reference/fiat-payout-api/upload-attachment.md)
+    * [Query Fiat Payout](reference/api-reference/fiat-payout-api/query-payout.md)
+    * [Remittance Purposes](reference/api-reference/fiat-payout-api/remittance-purposes.md)
   * [Scan Pay API](reference/api-reference/scan-pay-api/README.md)
     * [ScanPay](reference/api-reference/scan-pay-api/scanpay.md)
 
