@@ -25,3 +25,5 @@ Additionally, you can view the API documentation:
 {% content-ref url="reference/api-reference/" %}
 [api-reference](reference/api-reference/)
 {% endcontent-ref %}
+
+<!-- Sync round-trip test: this line was added via GitHub on 2026-08-25. -->
