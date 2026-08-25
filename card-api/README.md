@@ -18,14 +18,9 @@ Access to Card API is authenticated using an API access key combined with crypto
 [getting-started.md](getting-started.md)
 {% endcontent-ref %}
 
-
-
 Additionally, you can view the API documentation:
 
 {% content-ref url="reference/api-reference/" %}
 [api-reference](reference/api-reference/)
 {% endcontent-ref %}
 
-<!-- Sync round-trip test: this line was added via GitHub on 2026-08-25. -->
-
-> **Sync round-trip test**: this note was added from GitHub and synced back to GitBook (2026-08-25).

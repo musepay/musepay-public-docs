@@ -2,10 +2,6 @@
 
 The Fiat Payout API lets an organization send fiat currency from its USDT balance to a third-party bank account.
 
-{% hint style="warning" %}
-Every request must contain [common parameters](../common-parameters.md).
-{% endhint %}
-
 {% hint style="info" %}
 A successful API response confirms that the request was accepted. Fiat payouts are processed asynchronously. Use the query endpoint or an [order webhook](../../../webhook/order.md) to obtain the final result.
 {% endhint %}
@@ -19,21 +15,21 @@ A successful API response confirms that the request was accepted. Fiat payouts a
 
 ## Key Rules
 
-| Rule | Description |
-| --- | --- |
-| Quote required | Every payout must be created from a valid, unexpired quote. |
-| Idempotency | Use a unique customer quote number and customer order number for each business request. |
-| Beneficiary type | A local payout uses `beneficiary`; an international wire uses either `individual` or `enterprise`, matching the quote. |
-| Remittance purpose | Use a purpose code supported by the selected beneficiary bank and preserve leading zeroes. |
-| Asynchronous status | Creating a payout does not mean it has completed. Use the query API or order webhooks to obtain its final status. |
+| Rule                | Description                                                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Quote required      | Every payout must be created from a valid, unexpired quote.                                                            |
+| Idempotency         | Use a unique customer quote number and customer order number for each business request.                                |
+| Beneficiary type    | A local payout uses `beneficiary`; an international wire uses either `individual` or `enterprise`, matching the quote. |
+| Remittance purpose  | Use a purpose code supported by the selected beneficiary bank and preserve leading zeroes.                             |
+| Asynchronous status | Creating a payout does not mean it has completed. Use the query API or order webhooks to obtain its final status.      |
 
 ## APIs
 
-| API | Endpoint | Description |
-| --- | --- | --- |
-| [Payout Quotations](quotations.md) | `/v1/fiatpayout/quotations/create` | Create a local payout or international wire quote. |
-| [Payout Quotations](quotations.md) | `/v1/fiatpayout/quotations/query` | Query a quote by its MusePay or customer quote number. |
-| [Create Fiat Payout](create-payout.md) | `/v1/fiatpayout/payouts/create` | Create a payout from a valid quote. |
-| [Upload Payout Attachment](upload-attachment.md) | `/v1/fiatpayout/payouts/files/upload` | Upload a supporting document for a payout. |
-| [Query Fiat Payout](query-payout.md) | `/v1/fiatpayout/payouts/query` | Retrieve a payout and its latest status. |
-| [Remittance Purposes](remittance-purposes.md) | `/v1/fiatpayout/payouts/remitReasons` | Retrieve available remittance purpose codes. |
+| API                                              | Endpoint                              | Description                                            |
+| ------------------------------------------------ | ------------------------------------- | ------------------------------------------------------ |
+| [Payout Quotations](quotations.md)               | `/v1/fiatpayout/quotations/create`    | Create a local payout or international wire quote.     |
+| [Payout Quotations](quotations.md)               | `/v1/fiatpayout/quotations/query`     | Query a quote by its MusePay or customer quote number. |
+| [Create Fiat Payout](create-payout.md)           | `/v1/fiatpayout/payouts/create`       | Create a payout from a valid quote.                    |
+| [Upload Payout Attachment](upload-attachment.md) | `/v1/fiatpayout/payouts/files/upload` | Upload a supporting document for a payout.             |
+| [Query Fiat Payout](query-payout.md)             | `/v1/fiatpayout/payouts/query`        | Retrieve a payout and its latest status.               |
+| [Remittance Purposes](remittance-purposes.md)    | `/v1/fiatpayout/payouts/remitReasons` | Retrieve available remittance purpose codes.           |
