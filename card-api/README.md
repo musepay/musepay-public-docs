@@ -27,3 +27,5 @@ Additionally, you can view the API documentation:
 {% endcontent-ref %}
 
 <!-- Sync round-trip test: this line was added via GitHub on 2026-08-25. -->
+
+> **Sync round-trip test**: this note was added from GitHub and synced back to GitBook (2026-08-25).
