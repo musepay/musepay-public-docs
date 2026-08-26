@@ -8,20 +8,6 @@ Returns the remittance purpose codes that can be used to create a payout. Use a 
 
 <mark style="color:green;">`POST`</mark> `/v1/fiatpayout/payouts/remitReasons`
 
-## Request Body
-
-| Name | Type | Required | Description |
-| --- | --- | --- | --- |
-| enterprise_id | String | Yes | Enterprise identifier issued to the organization. |
-
-## Request Example
-
-```json
-{
-  "enterprise_id": "E202605050001"
-}
-```
-
 ## Response Body
 
 The `data` object maps each remittance purpose code to its description.

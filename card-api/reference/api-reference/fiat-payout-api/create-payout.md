@@ -12,7 +12,6 @@ Creates a local payout or an international wire using a valid payout quote.
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| enterprise_id | String | Yes | Enterprise identifier issued to the organization. |
 | request_id | String | Yes | Unique payout identifier supplied by the organization. Used as the idempotency key. |
 | customer_quote_no | String | Yes | `customer_quote_no` used to create the payout quote. The quote must not be expired. |
 | remittance_purpose_code | String | Yes | Remittance purpose code. Preserve leading zeroes. |
@@ -23,7 +22,7 @@ Creates a local payout or an international wire using a valid payout quote.
 
 For a local payout, provide only `beneficiary`. For an international wire, provide either `individual_beneficiary` or `enterprise_beneficiary`, matching the account type used in the quote.
 
-The idempotency scope is `enterprise_id + request_id`. A repeated request is rejected and does not create another payout.
+The idempotency scope is `partner_id + request_id`. A repeated request is rejected and does not create another payout.
 
 ### International Beneficiary Fields
 
@@ -61,7 +60,6 @@ Additional field for `enterprise_beneficiary`:
 
 ```json
 {
-  "enterprise_id": "E202605050001",
   "request_id": "ORD-20260505-001",
   "customer_quote_no": "CUST-QT-001",
   "remittance_purpose_code": "10",
