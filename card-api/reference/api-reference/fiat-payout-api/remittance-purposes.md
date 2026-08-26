@@ -12,13 +12,13 @@ Returns the remittance purpose codes that can be used to create a payout. Use a 
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| enterNo | String | Yes | Enterprise number issued to the organization. |
+| enterprise_id | String | Yes | Enterprise identifier issued to the organization. |
 
 ## Request Example
 
 ```json
 {
-  "enterNo": "E202605050001"
+  "enterprise_id": "E202605050001"
 }
 ```
 

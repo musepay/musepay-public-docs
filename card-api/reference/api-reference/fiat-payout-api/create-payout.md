@@ -12,64 +12,64 @@ Creates a local payout or an international wire using a valid payout quote.
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| enterNo | String | Yes | Enterprise number issued to the organization. |
-| userOrderNo | String | Yes | Unique payout identifier supplied by the organization. Used as the idempotency key. |
-| custQuoteNo | String | Yes | `custQuoteNo` used to create the payout quote. The quote must not be expired. |
-| remitPurpCode | String | Yes | Remittance purpose code. Preserve leading zeroes. |
-| remark | String | No | Payout description or reference. Do not include sensitive information. |
+| enterprise_id | String | Yes | Enterprise identifier issued to the organization. |
+| request_id | String | Yes | Unique payout identifier supplied by the organization. Used as the idempotency key. |
+| customer_quote_no | String | Yes | `customer_quote_no` used to create the payout quote. The quote must not be expired. |
+| remittance_purpose_code | String | Yes | Remittance purpose code. Preserve leading zeroes. |
+| description | String | No | Payout description or reference. Do not include sensitive information. |
 | beneficiary | Object | Conditional | Beneficiary for a local payout. Its fields are determined by the selected beneficiary bank. |
-| individual | Object | Conditional | Individual beneficiary for an international wire. Required when the quote's `accType` is `01`. |
-| enterprise | Object | Conditional | Organization beneficiary for an international wire. Required when the quote's `accType` is `03`. |
+| individual_beneficiary | Object | Conditional | Individual beneficiary for an international wire. Required when the quote's `account_type` is `01`. |
+| enterprise_beneficiary | Object | Conditional | Organization beneficiary for an international wire. Required when the quote's `account_type` is `03`. |
 
-For a local payout, provide only `beneficiary`. For an international wire, provide either `individual` or `enterprise`, matching the account type used in the quote.
+For a local payout, provide only `beneficiary`. For an international wire, provide either `individual_beneficiary` or `enterprise_beneficiary`, matching the account type used in the quote.
 
-The idempotency scope is `enterNo + userOrderNo`. A repeated request is rejected and does not create another payout.
+The idempotency scope is `enterprise_id + request_id`. A repeated request is rejected and does not create another payout.
 
 ### International Beneficiary Fields
 
-The following fields apply to both `individual` and `enterprise` beneficiaries.
+The following fields apply to both `individual_beneficiary` and `enterprise_beneficiary`.
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| accountNo | String | Yes | Beneficiary bank account number. |
-| applyType | String | Yes | Beneficiary relationship: `own` or `third`. Must match `supportSame` in the quote. |
+| account_no | String | Yes | Beneficiary bank account number. |
+| beneficiary_relationship | String | Yes | Beneficiary relationship: `own` or `third`. Must match `beneficiary_relationship` in the quote. |
 | country | String | Yes | Beneficiary country or region as an ISO 3166-1 alpha-2 code. |
 | currency | String | Yes | Beneficiary account currency as an ISO 4217 currency code. |
-| bank | String | Yes | Beneficiary bank name. |
-| swift | String | Yes | Beneficiary bank SWIFT/BIC. |
+| bank_name | String | Yes | Beneficiary bank name. |
+| swift_code | String | Yes | Beneficiary bank SWIFT/BIC. |
 | address | String | Yes | Beneficiary address. |
 
-Additional fields for `individual`:
+Additional fields for `individual_beneficiary`:
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| name | String | Conditional | Full legal name. May be used for an own-account beneficiary or when a single full-name field is required. |
-| firstName | String | Conditional | Given name. Required for a third-party beneficiary unless `name` is accepted. |
-| middleName | String | No | Middle name. |
-| lastName | String | Conditional | Family name. Required for a third-party beneficiary unless `name` is accepted. |
+| full_name | String | Conditional | Full legal name. May be used for an own-account beneficiary or when a single full-name field is required. |
+| first_name | String | Conditional | Given name. Required for a third-party beneficiary unless `full_name` is accepted. |
+| middle_name | String | No | Middle name. |
+| last_name | String | Conditional | Family name. Required for a third-party beneficiary unless `full_name` is accepted. |
 | nationality | String | Conditional | Nationality as an ISO 3166-1 alpha-2 code. Required for a third-party beneficiary. |
 | gender | String | Conditional | `male` or `female`. Required for a third-party beneficiary when requested by the payout route. |
-| birthDay | String | Conditional | Date of birth in `yyyy-MM-dd` format. Required for a third-party beneficiary when requested by the payout route. |
+| date_of_birth | String | Conditional | Date of birth in `yyyy-MM-dd` format. Required for a third-party beneficiary when requested by the payout route. |
 
-Additional field for `enterprise`:
+Additional field for `enterprise_beneficiary`:
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| name | String | Conditional | Legal organization name. Required for a third-party beneficiary. |
+| company_name | String | Conditional | Legal organization name. Required for a third-party beneficiary. |
 
 ## Request Example
 
 ```json
 {
-  "enterNo": "E202605050001",
-  "userOrderNo": "ORD-20260505-001",
-  "custQuoteNo": "CUST-QT-001",
-  "remitPurpCode": "10",
-  "remark": "invoice 1001",
+  "enterprise_id": "E202605050001",
+  "request_id": "ORD-20260505-001",
+  "customer_quote_no": "CUST-QT-001",
+  "remittance_purpose_code": "10",
+  "description": "invoice 1001",
   "beneficiary": {
-    "accountNo": "1234567890",
-    "firstName": "John",
-    "lastName": "Smith"
+    "account_no": "1234567890",
+    "first_name": "John",
+    "last_name": "Smith"
   }
 }
 ```
@@ -78,38 +78,38 @@ Additional field for `enterprise`:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| orderNo | String | Payout order number generated by MusePay. |
-| userOrderNo | String | Payout identifier supplied by the organization. |
-| amount | Number | Amount deducted from the source balance. |
-| currency | String | Source asset code. |
-| entryCurr | String | Fiat currency received by the beneficiary. |
-| entryAmt | Number | Fiat amount received by the beneficiary. |
-| fee | Number | Payout fee. |
-| feeCcy | String | Currency in which the fee is charged. |
-| rate | Number | Exchange rate applied to the payout. |
-| exchangeNo | String | Related foreign exchange transaction number. |
+| order_no | String | Payout order number generated by MusePay. |
+| request_id | String | Payout identifier supplied by the organization. |
+| pay_amount | Number | Amount deducted from the source balance. |
+| pay_currency | String | Source asset code. |
+| receive_currency | String | Fiat currency received by the beneficiary. |
+| receive_amount | Number | Fiat amount received by the beneficiary. |
+| fee_amount | Number | Payout fee. |
+| fee_currency | String | Currency in which the fee is charged. |
+| exchange_rate | Number | Exchange rate applied to the payout. |
+| exchange_order_no | String | Related foreign exchange transaction number. |
 | status | Number | Current [order status](../../../enums/order-status.md). |
-| failCode | String | Standard failure code, when available. Returned for failed payouts. |
-| failMsg | String | Failure reason, when available. Returned for failed payouts. |
-| createTime | Number | Order creation time, as a 13-digit Unix timestamp in milliseconds. |
+| failure_code | String | Standard failure code, when available. Returned for failed payouts. |
+| failure_reason | String | Failure reason, when available. Returned for failed payouts. |
+| create_time | Number | Order creation time, as a 13-digit Unix timestamp in milliseconds. |
 
 ```json
 {
   "code": "200",
   "message": "success",
   "data": {
-    "orderNo": "PO202605050001",
-    "userOrderNo": "ORD-20260505-001",
-    "amount": 1000.00,
-    "currency": "USDT",
-    "entryCurr": "USD",
-    "entryAmt": 995.00,
-    "fee": 5.00,
-    "feeCcy": "USDT",
-    "rate": 1.0000,
-    "exchangeNo": "EX202605050001",
+    "order_no": "PO202605050001",
+    "request_id": "ORD-20260505-001",
+    "pay_amount": 1000.00,
+    "pay_currency": "USDT",
+    "receive_currency": "USD",
+    "receive_amount": 995.00,
+    "fee_amount": 5.00,
+    "fee_currency": "USDT",
+    "exchange_rate": 1.0000,
+    "exchange_order_no": "EX202605050001",
     "status": 11,
-    "createTime": 1777946400000
+    "create_time": 1777946400000
   }
 }
 ```

@@ -9,7 +9,7 @@ A successful API response confirms that the request was accepted. Fiat payouts a
 ## Integration Flow
 
 1. [Create a payout quote](quotations.md) for the destination country and fiat currency.
-2. [Create the payout](create-payout.md) with a valid `custQuoteNo` before the quote expires.
+2. [Create the payout](create-payout.md) with a valid `customer_quote_no` before the quote expires.
 3. [Upload supporting documents](upload-attachment.md) if they are required for the payout.
 4. [Query the payout](query-payout.md) or process order webhooks until it reaches a final [order status](../../../enums/order-status.md).
 
@@ -18,9 +18,9 @@ A successful API response confirms that the request was accepted. Fiat payouts a
 | Rule                | Description                                                                                                            |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | Quote required      | Every payout must be created from a valid, unexpired quote.                                                            |
-| Idempotency         | Use a unique customer quote number and customer order number for each business request.                                |
-| Beneficiary type    | A local payout uses `beneficiary`; an international wire uses either `individual` or `enterprise`, matching the quote. |
-| Remittance purpose  | Use a purpose code supported by the selected beneficiary bank and preserve leading zeroes.                             |
+| Idempotency         | Use a unique `customer_quote_no` and `request_id` for each business request.                                            |
+| Beneficiary type    | A local payout uses `beneficiary`; an international wire uses either `individual_beneficiary` or `enterprise_beneficiary`, matching the quote. |
+| Remittance purpose  | Use a supported `remittance_purpose_code` and preserve leading zeroes.                                                  |
 | Asynchronous status | Creating a payout does not mean it has completed. Use the query API or order webhooks to obtain its final status.      |
 
 ## APIs
