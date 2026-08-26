@@ -14,7 +14,7 @@ Creates a local payout or an international wire using a valid payout quote.
 | --- | --- | --- | --- |
 | request_id | String | Yes | Unique payout identifier supplied by the organization. Used as the idempotency key. |
 | customer_quote_no | String | Yes | `customer_quote_no` used to create the payout quote. The quote must not be expired. |
-| remittance_purpose_code | String | Yes | Remittance purpose code. Preserve leading zeroes. |
+| purpose_code | String | Yes | Remittance purpose code. Preserve leading zeroes. |
 | description | String | No | Payout description or reference. Do not include sensitive information. |
 | beneficiary | Object | Conditional | Beneficiary for a local payout. Its fields are determined by the selected beneficiary bank. |
 | individual_beneficiary | Object | Conditional | Individual beneficiary for an international wire. Required when the quote's `account_type` is `01`. |
@@ -62,7 +62,7 @@ Additional field for `enterprise_beneficiary`:
 {
   "request_id": "ORD-20260505-001",
   "customer_quote_no": "CUST-QT-001",
-  "remittance_purpose_code": "10",
+  "purpose_code": "10",
   "description": "invoice 1001",
   "beneficiary": {
     "account_no": "1234567890",

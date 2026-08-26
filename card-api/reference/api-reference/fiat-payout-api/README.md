@@ -20,7 +20,7 @@ A successful API response confirms that the request was accepted. Fiat payouts a
 | Quote required      | Every payout must be created from a valid, unexpired quote.                                                            |
 | Idempotency         | Use a unique `customer_quote_no` and `request_id` for each business request.                                            |
 | Beneficiary type    | A local payout uses `beneficiary`; an international wire uses either `individual_beneficiary` or `enterprise_beneficiary`, matching the quote. |
-| Remittance purpose  | Use a supported `remittance_purpose_code` and preserve leading zeroes.                                                  |
+| Remittance purpose  | Use a supported `purpose_code` and preserve leading zeroes.                                                             |
 | Asynchronous status | Creating a payout does not mean it has completed. Use the query API or order webhooks to obtain its final status.      |
 
 ## APIs
