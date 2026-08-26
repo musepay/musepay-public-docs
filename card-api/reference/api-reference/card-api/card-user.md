@@ -22,28 +22,28 @@ Demo code can be found at [Github](../#demo-client)
 
 | Name                                                         | Type   | Description                                                                                                                                                                                              |
 | ------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| individual.annual\_income                                    | String | Annual income of card holder in card currency                                                                                                                                                            |
-| individual.date\_of\_birth<mark style="color:red;">\*</mark> | String | Date of birth (YYYY-MM-DD)                                                                                                                                                                               |
+| user\_xid<mark style="color:red;">\*</mark>                  | String | External identifier, unique under the partner.                                                                                                                                                           |
+| user\_name                                                   | String | Nickname of user account, this is a human-friendly non-unique name for a user account                                                                                                                    |
 | email<mark style="color:red;">\*</mark>                      | String | Email address of cardholder                                                                                                                                                                              |
+| individual<mark style="color:red;">\*</mark>                 | Object | Individual card holder identity information.                                                                                                                                                             |
 | individual.first\_name<mark style="color:red;">\*</mark>     | String | First name of cardholder                                                                                                                                                                                 |
 | individual.last\_name<mark style="color:red;">\*</mark>      | String | Last name / Surname of cardholder                                                                                                                                                                        |
+| individual.date\_of\_birth<mark style="color:red;">\*</mark> | String | Date of birth (YYYY-MM-DD)                                                                                                                                                                               |
 | individual.occupation                                        | String | Occupation of card holder.                                                                                                                                                                               |
+| individual.annual\_income                                    | String | Annual income of card holder in card currency                                                                                                                                                            |
 | document<mark style="color:red;">\*</mark>                   | Object | Government Issued Identification Document Information                                                                                                                                                    |
-| user\_xid<mark style="color:red;">\*</mark>                  | String | External identifier, unique under the partner.                                                                                                                                                           |
-| individual<mark style="color:red;">\*</mark>                 | Object | Individual card holder identity information.                                                                                                                                                             |
-| user\_name                                                   | String | Nickname of user account, this is a human-friendly non-unique name for a user account                                                                                                                    |
-| document.country<mark style="color:red;">\*</mark>           | String | Issuing country of identification document in ISO3166-1 alpha-2 format                                                                                                                                   |
-| document.number<mark style="color:red;">\*</mark>            | String | Identification document number.                                                                                                                                                                          |
-| document.back                                                | String | <p>The back of a document file encoded in data URI base64 encoded format.</p><p></p><p>The back of a document file encoded in data URI base64 encoded format</p>                                         |
-| document.front<mark style="color:red;">\*</mark>             | String | <p>The front of a document file encoded <strong>in data URI base64 encoded format.</strong></p><p></p><p>The following mime types are accepted for ID documents:<br>image/jpeg,<br>image/png.</p><p></p> |
-| document.face                                                | String | <p>The selfie photo file encoded <strong>in data URI base64 encoded format.</strong></p><p></p><p>The following mime types are accepted for ID documents:<br>image/jpeg,<br>image/png.</p>               |
 | document.type<mark style="color:red;">\*</mark>              | String | 1 or 2, enums in [Document Type](../../../enums/document-type.md)                                                                                                                                        |
+| document.number<mark style="color:red;">\*</mark>            | String | Identification document number.                                                                                                                                                                          |
+| document.country<mark style="color:red;">\*</mark>           | String | Issuing country of identification document in ISO3166-1 alpha-2 format                                                                                                                                   |
 | document.expiry\_date<mark style="color:red;">\*</mark>      | String | Expiry date of identification document (YYYY-MM-DD)                                                                                                                                                      |
+| document.front<mark style="color:red;">\*</mark>             | String | <p>The front of a document file encoded <strong>in data URI base64 encoded format.</strong></p><p></p><p>The following mime types are accepted for ID documents:<br>image/jpeg,<br>image/png.</p><p></p> |
+| document.back                                                | String | <p>The back of a document file encoded in data URI base64 encoded format.</p><p></p><p>The back of a document file encoded in data URI base64 encoded format</p>                                         |
+| document.face                                                | String | <p>The selfie photo file encoded <strong>in data URI base64 encoded format.</strong></p><p></p><p>The following mime types are accepted for ID documents:<br>image/jpeg,<br>image/png.</p>               |
 | address                                                      | Object | Delivery address                                                                                                                                                                                         |
-| address.details                                              | String | Detail delivery address                                                                                                                                                                                  |
-| address.city                                                 | String | Delivery city                                                                                                                                                                                            |
 | address.country                                              | String | Delivery country of identification document in ISO3166-1 alpha-2 format                                                                                                                                  |
+| address.city                                                 | String | Delivery city                                                                                                                                                                                            |
 | address.post\_code                                           | String | Delivery post code                                                                                                                                                                                       |
+| address.details                                              | String | Detail delivery address                                                                                                                                                                                  |
 
 {% tabs %}
 {% tab title="200: OK Success" %}
@@ -74,19 +74,19 @@ curl --location --request POST 'https://api.musepay.io/v1/carduser/create' \
       "user_name": "jasonwood", 
     * "email": "carduser001@musepay.io",     
     * "individual" : {
-    *     "last_name": "Weather",
     *     "first_name": "Jack",
+    *     "last_name": "Weather",
     *     "date_of_birth": "1988-02-02",
           "occupation": "01",
           "annual_income":"100000"
       },
       "document": {
     *     "type": "passport",
-    *     "front": "afjkfjkasfjajsdfkasfjadsf",
-    *     "back": "afjkfjkasfjajsdfkasfjasdafasf",
     *     "number": "G012345678",
     *     "country": "China",
-    *     "expiry_date": "2030-10-10"
+    *     "expiry_date": "2030-10-10",
+    *     "front": "afjkfjkasfjajsdfkasfjadsf",
+    *     "back": "afjkfjkasfjajsdfkasfjasdafasf"
       },
       "address": {
           "country": "BR",
