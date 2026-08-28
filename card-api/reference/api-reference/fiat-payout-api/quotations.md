@@ -1,56 +1,95 @@
-# Payout Quotations
+# Payout Quote
 
 {% hint style="warning" %}
 Every request must contain [common parameters](../common-parameters.md).
 {% endhint %}
 
-## Create Payout Quote
+Creates a quote for converting the source asset into the fiat currency received by the beneficiary. The beneficiary and payout route are captured when the quote is created.
 
-Creates a quote for converting USDT into the fiat currency received by the beneficiary.
+<mark style="color:green;">`POST`</mark> `/v1/fiatpayout/payouts/quote`
 
-<mark style="color:green;">`POST`</mark> `/v1/fiatpayout/quotations/create`
-
-### Request Body
+## Request Body
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| customer_quote_no | String | Yes | Unique quote identifier supplied by the organization. Used as the idempotency key. |
+| request_id | String | Yes | Unique identifier supplied by the organization. Used as the quote request's idempotency key. |
 | quote_mode | String | Yes | Quote mode. Use `source` to specify `pay_amount`, or `dest` to specify `receive_amount`. |
-| pay_currency | String | Yes | Source asset code. Use `USDT` for a payout funded from the USDT balance. |
-| pay_amount | String | Conditional | Amount deducted from the USDT balance. Required when `quote_mode` is `source`. |
-| beneficiary_country | String | Yes | Beneficiary country or region as an ISO 3166-1 alpha-2 code. |
+| pay_currency | String | Yes | Source asset code. |
+| pay_amount | String | Conditional | Source amount. Required when `quote_mode` is `source`; must be greater than zero. |
 | receive_currency | String | Yes | Fiat currency received by the beneficiary, as an ISO 4217 currency code. |
-| receive_amount | String | Conditional | Fiat amount received by the beneficiary. Required when `quote_mode` is `dest`. |
-| local_quote | Object | Conditional | Local payout configuration. Provide either `local_quote` or `international_quote`. |
-| local_quote.beneficiary_bank_id | String | Yes | Identifier of the beneficiary bank. Required when `local_quote` is provided. |
-| international_quote | Object | Conditional | International wire configuration. Provide either `international_quote` or `local_quote`. |
-| international_quote.account_type | String | Yes | Beneficiary account type: `01` for an individual or `03` for an organization. |
-| international_quote.beneficiary_relationship | String | Yes | Beneficiary relationship: `own` for the organization's own account or `third` for a third-party account. |
-| international_quote.bank_fee_type | String | Yes | Bank fee allocation: `SHA`, `OUR`, or `BEN`. |
+| receive_amount | String | Conditional | Destination amount. Required when `quote_mode` is `dest`; must be greater than zero. |
+| beneficiary_country | String | Yes | Beneficiary country or region as an ISO 3166-1 alpha-2 code. |
+| beneficiary_bank_id | String | Yes | `bank_code` returned by [Supported Banks](supported-capabilities.md#supported-banks). |
+| account_type | String | Yes | Beneficiary account type: `01` for an individual or `03` for an organization. |
+| beneficiary_relationship | String | Yes | Beneficiary relationship: `own` or `third`. |
+| clear_network | String | Yes | Clearing network returned by [Supported Networks](supported-capabilities.md#supported-networks). |
+| beneficiaryFields | Object | No | Bank-specific fields keyed by the values returned from [Required Beneficiary Fields](supported-capabilities.md#required-beneficiary-fields). The field name is case-sensitive. |
+| individual_beneficiary | Object | Conditional | Required when `account_type` is `01`. |
+| enterprise_beneficiary | Object | Conditional | Required when `account_type` is `03`. |
 
-### Request Example
+Provide only the beneficiary object that matches `account_type`.
+
+### Beneficiary Fields
+
+The following fields apply to both `individual_beneficiary` and `enterprise_beneficiary`:
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| account_no | String | Yes | Beneficiary bank account number. |
+| bank_name | String | Yes | Beneficiary bank name. |
+| address | String | Yes | Beneficiary address. |
+
+Additional fields for `individual_beneficiary`:
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| full_name | String | No | Full legal name. When present, it is used as the beneficiary name. |
+| first_name | String | No | Given name. Used with `middle_name` and `last_name` when `full_name` is absent. |
+| middle_name | String | No | Middle name. |
+| last_name | String | No | Family name. |
+| nationality | String | No | Nationality as an ISO 3166-1 alpha-2 code. |
+| gender | String | No | `male` or `female`. |
+| date_of_birth | String | No | Date of birth in `yyyy-MM-dd` format. |
+
+Additional field for `enterprise_beneficiary`:
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| company_name | String | No | Legal organization name. |
+
+## Request Example
 
 ```json
 {
-  "customer_quote_no": "CUST-QT-001",
+  "request_id": "request-1",
   "quote_mode": "source",
   "pay_currency": "USDT",
-  "pay_amount": "1000.00",
-  "beneficiary_country": "US",
+  "pay_amount": "100.00",
   "receive_currency": "USD",
-  "local_quote": {
-    "beneficiary_bank_id": "3635"
+  "beneficiary_country": "US",
+  "beneficiary_bank_id": "bank-1",
+  "account_type": "01",
+  "beneficiary_relationship": "third",
+  "clear_network": "ACH",
+  "beneficiaryFields": {
+    "routing_number": "110000"
+  },
+  "individual_beneficiary": {
+    "account_no": "123456789",
+    "bank_name": "Example Bank",
+    "address": "New York",
+    "full_name": "Alice Smith"
   }
 }
 ```
 
-### Response Body
+## Response Body
 
 | Name | Type | Description |
 | --- | --- | --- |
-| customer_quote_no | String | Quote identifier supplied by the organization. |
-| quote_no | String | Quote identifier generated by MusePay. |
-| transaction_time | Number | Time at which the quote was created, as a 13-digit Unix timestamp in milliseconds. |
+| request_id | String | Identifier supplied in the quote request. |
+| order_no | String | Quote order number generated by MusePay. Use this value to create the payout. |
+| transaction_time | Number | Quote creation time, as a 13-digit Unix timestamp in milliseconds. |
 | quote_mode | String | Quote mode used for the request. |
 | pay_amount | String | Amount deducted from the source balance. |
 | pay_currency | String | Source asset code. |
@@ -66,41 +105,18 @@ Creates a quote for converting USDT into the fiat currency received by the benef
   "code": "200",
   "message": "success",
   "data": {
-    "customer_quote_no": "CUST-QT-001",
-    "quote_no": "QT202605050001",
-    "transaction_time": 1777946400000,
+    "request_id": "request-1",
+    "order_no": "ORDER-1",
+    "transaction_time": 1700000000000,
     "quote_mode": "source",
-    "pay_amount": "1000.00",
+    "pay_amount": "100.00",
     "pay_currency": "USDT",
-    "fee_amount": "5.00",
+    "fee_amount": "1.25",
     "fee_currency": "USDT",
-    "exchange_rate": "1.0000",
-    "receive_amount": "995.00",
+    "exchange_rate": "0.99",
+    "receive_amount": "98.75",
     "receive_currency": "USD",
-    "expire_time": 1777946700000
+    "expire_time": 1700000900000
   }
 }
 ```
-
-## Query Payout Quote
-
-Retrieves a payout quote by its MusePay quote number or the organization's quote identifier.
-
-<mark style="color:green;">`POST`</mark> `/v1/fiatpayout/quotations/query`
-
-### Request Body
-
-| Name | Type | Required | Description |
-| --- | --- | --- | --- |
-| quote_no | String | Conditional | Quote identifier generated by MusePay. Provide either `quote_no` or `customer_quote_no`. |
-| customer_quote_no | String | Conditional | Quote identifier supplied by the organization. Provide either `customer_quote_no` or `quote_no`. |
-
-### Request Example
-
-```json
-{
-  "quote_no": "QT202605050001"
-}
-```
-
-The response uses the same `data` object documented under [Create Payout Quote](#create-payout-quote).

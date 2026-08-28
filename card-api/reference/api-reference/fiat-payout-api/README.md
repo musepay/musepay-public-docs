@@ -8,28 +8,32 @@ A successful API response confirms that the request was accepted. Fiat payouts a
 
 ## Integration Flow
 
-1. [Create a payout quote](quotations.md) for the destination country and fiat currency.
-2. [Create the payout](create-payout.md) with a valid `customer_quote_no` before the quote expires.
-3. [Upload supporting documents](upload-attachment.md) if they are required for the payout.
+1. Use the [supported capabilities](supported-capabilities.md) endpoints to select a country, currency, bank, clearing network, and required beneficiary fields.
+2. [Create a payout quote](quotations.md) with the selected route and beneficiary details.
+3. [Create the payout](create-payout.md) with the quote `order_no` before the quote expires.
 4. [Query the payout](query-payout.md) or process order webhooks until it reaches a final [order status](../../../enums/order-status.md).
 
 ## Key Rules
 
-| Rule                | Description                                                                                                            |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Quote required      | Every payout must be created from a valid, unexpired quote.                                                            |
-| Idempotency         | Use a unique `customer_quote_no` and `request_id` for each business request.                                            |
-| Beneficiary type    | A local payout uses `beneficiary`; an international wire uses either `individual_beneficiary` or `enterprise_beneficiary`, matching the quote. |
-| Remittance purpose  | Use a supported `purpose_code` and preserve leading zeroes.                                                             |
-| Asynchronous status | Creating a payout does not mean it has completed. Use the query API or order webhooks to obtain its final status.      |
+| Rule | Description |
+| --- | --- |
+| Capability discovery | Query the support endpoints before quoting because available routes and required fields can vary by country, currency, bank, and amount. |
+| Quote idempotency | Use a unique `request_id` for each quote request. Its scope includes the common `partner_id`. |
+| Quote required | Create the payout with the valid, unexpired `order_no` returned by the quote endpoint. Each quote can be confirmed only once. |
+| Beneficiary type | Use `individual_beneficiary` for `account_type=01` or `enterprise_beneficiary` for `account_type=03`. |
+| Dynamic fields | Send fields returned by `/supports/fields` in the case-sensitive `beneficiaryFields` object when creating a quote. |
+| Remittance purpose | Use a supported `purpose_code` and preserve leading zeroes. |
+| Asynchronous status | Creating a payout does not mean it has completed. Use the query API or order webhooks to obtain its final status. |
 
 ## APIs
 
-| API                                              | Endpoint                              | Description                                            |
-| ------------------------------------------------ | ------------------------------------- | ------------------------------------------------------ |
-| [Payout Quotations](quotations.md)               | `/v1/fiatpayout/quotations/create`    | Create a local payout or international wire quote.     |
-| [Payout Quotations](quotations.md)               | `/v1/fiatpayout/quotations/query`     | Query a quote by its MusePay or customer quote number. |
-| [Create Fiat Payout](create-payout.md)           | `/v1/fiatpayout/payouts/create`       | Create a payout from a valid quote.                    |
-| [Upload Payout Attachment](upload-attachment.md) | `/v1/fiatpayout/payouts/files/upload` | Upload a supporting document for a payout.             |
-| [Query Fiat Payout](query-payout.md)             | `/v1/fiatpayout/payouts/query`        | Retrieve a payout and its latest status.               |
-| [Remittance Purposes](remittance-purposes.md)    | `/v1/fiatpayout/payouts/remitReasons` | Retrieve available remittance purpose codes.           |
+| API | Endpoint | Description |
+| --- | --- | --- |
+| [Payout Quote](quotations.md) | `/v1/fiatpayout/payouts/quote` | Create a payout quote and capture beneficiary details. |
+| [Create Fiat Payout](create-payout.md) | `/v1/fiatpayout/payouts/create` | Confirm a valid quote and start payout processing. |
+| [Query Fiat Payout](query-payout.md) | `/v1/fiatpayout/payouts/query` | Retrieve a payout and its latest status. |
+| [Remittance Purposes](remittance-purposes.md) | `/v1/fiatpayout/payouts/remitReasons` | Retrieve available remittance purpose codes. |
+| [Supported Countries](supported-capabilities.md#supported-countries) | `/v1/fiatpayout/supports/countries` | Retrieve supported countries and currencies. |
+| [Supported Banks](supported-capabilities.md#supported-banks) | `/v1/fiatpayout/supports/banks` | Retrieve banks or wallets supported for a route. |
+| [Supported Networks](supported-capabilities.md#supported-networks) | `/v1/fiatpayout/supports/networks` | Retrieve clearing networks supported for a route. |
+| [Required Beneficiary Fields](supported-capabilities.md#required-beneficiary-fields) | `/v1/fiatpayout/supports/fields` | Retrieve bank-specific beneficiary fields. |

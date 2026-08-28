@@ -36,11 +36,10 @@ Retrieves a payout order and its latest status.
 | fee_amount | String | Payout fee. |
 | fee_currency | String | Currency in which the fee is charged. |
 | exchange_rate | String | Exchange rate applied to the payout. |
-| exchange_order_no | String | Related foreign exchange transaction number. |
 | status | Number | Current [order status](../../../enums/order-status.md). |
-| failure_code | String | Standard failure code, when available. Returned for failed payouts. |
-| failure_reason | String | Failure reason, when available. Returned for failed payouts. |
+| failure_reason | String | Failure reason, when available. |
 | create_time | Number | Order creation time, as a 13-digit Unix timestamp in milliseconds. |
+| finish_time | Number | Order completion time, as a 13-digit Unix timestamp in milliseconds. Returned when available. |
 
 ```json
 {
@@ -56,9 +55,10 @@ Retrieves a payout order and its latest status.
     "fee_amount": "5.00",
     "fee_currency": "USDT",
     "exchange_rate": "1.0000",
-    "exchange_order_no": "EX202605050001",
     "status": 99,
-    "create_time": 1777946400000
+    "failure_reason": null,
+    "create_time": 1777946400000,
+    "finish_time": 1777946700000
   }
 }
 ```
