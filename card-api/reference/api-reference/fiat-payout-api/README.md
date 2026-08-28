@@ -8,7 +8,7 @@ A successful API response confirms that the request was accepted. Fiat payouts a
 
 ## Integration Flow
 
-1. Use the [supported capabilities](supported-capabilities.md) endpoints to select a country, currency, bank, clearing network, and required beneficiary fields.
+1. Use the [capabilities](capabilities/README.md) endpoints to select a country, currency, bank, clearing network, and required beneficiary fields.
 2. [Create a payout quote](quotations.md) with the selected route and beneficiary details.
 3. [Create the payout](create-payout.md) with the quote `order_no` before the quote expires.
 4. [Query the payout](query-payout.md) or process order webhooks until it reaches a final [order status](../../../enums/order-status.md).
@@ -33,7 +33,7 @@ A successful API response confirms that the request was accepted. Fiat payouts a
 | [Create Fiat Payout](create-payout.md) | `/v1/fiatpayout/payouts/create` | Confirm a valid quote and start payout processing. |
 | [Query Fiat Payout](query-payout.md) | `/v1/fiatpayout/payouts/query` | Retrieve a payout and its latest status. |
 | [Remittance Purposes](remittance-purposes.md) | `/v1/fiatpayout/payouts/remitReasons` | Retrieve available remittance purpose codes. |
-| [Supported Countries](supported-capabilities.md#supported-countries) | `/v1/fiatpayout/supports/countries` | Retrieve supported countries and currencies. |
-| [Supported Banks](supported-capabilities.md#supported-banks) | `/v1/fiatpayout/supports/banks` | Retrieve banks or wallets supported for a route. |
-| [Supported Networks](supported-capabilities.md#supported-networks) | `/v1/fiatpayout/supports/networks` | Retrieve clearing networks supported for a route. |
-| [Required Beneficiary Fields](supported-capabilities.md#required-beneficiary-fields) | `/v1/fiatpayout/supports/fields` | Retrieve bank-specific beneficiary fields. |
+| [Supported Countries](capabilities/countries.md) | `/v1/fiatpayout/supports/countries` | Retrieve supported countries and currencies. |
+| [Supported Banks](capabilities/banks.md) | `/v1/fiatpayout/supports/banks` | Retrieve banks or wallets supported for a route. |
+| [Supported Networks](capabilities/networks.md) | `/v1/fiatpayout/supports/networks` | Retrieve clearing networks supported for a route. |
+| [Required Beneficiary Fields](capabilities/fields.md) | `/v1/fiatpayout/supports/fields` | Retrieve bank-specific beneficiary fields. |
