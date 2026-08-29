@@ -1,6 +1,6 @@
 # Getting Started
 
-The Card API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts [JSON-encoded](http://www.json.org/)  request bodies, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.
+The MusePay API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts [JSON-encoded](http://www.json.org/) request bodies, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.
 
 \
 All API uses API secret keys to authenticate requests. Any request that doesn't include an API key will return an error.
@@ -29,11 +29,11 @@ openssl rsa -in muse_secret.key -pubout
 Make sure you keep the API secret key safe and secure!
 {% endhint %}
 
-**Then go to the** [**dashboard**](https://agent.musepay.io) **and upload the public key.** MuseCard will use your public key to verify the API calls.
+**Then go to the** [**dashboard**](https://agent.musepay.io) **and upload the public key.** MusePay will use your public key to verify the API calls.
 
 <figure><img src=".gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
-**Also remember to download MuseCard's public key** as you need to verify the notification from MuseCard API.
+**Also remember to download MusePay's public key** as you need it to verify API notifications.
 
 ## Signing a Request
 
@@ -217,7 +217,6 @@ step 3: finally get the request data
 ## IP Whitelisting
 
 \
-MuseCard supports restriction of API calls to be accepted only from a specific IP address per API key. If you wish to whitelist your IP address, please contact our technical support with the IP of the machine running your API client and the matching API key.
+MusePay supports restriction of API calls to be accepted only from a specific IP address per API key. If you wish to whitelist your IP address, please contact our technical support with the IP of the machine running your API client and the matching API key.
 
 <br>
-
