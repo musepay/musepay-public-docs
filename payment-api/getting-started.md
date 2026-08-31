@@ -1,6 +1,6 @@
 # Getting Started
 
-The MusePay API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts [JSON-encoded](http://www.json.org/)  request bodies, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.
+The MusePay API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts [JSON-encoded](http://www.json.org/) request bodies, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.
 
 \
 All API uses API secret keys to authenticate requests. Any request that doesn't include an API key will return an error.
@@ -16,24 +16,24 @@ SHA1WithRSA
 ```
 
 \
-&#x20; **First,** Run the following command line to generate an RSA 2048 private key (stored in pay\_secret.key):
+&#x20; **First,** Run the following command line to generate an RSA 2048 private key (stored in muse\_secret.key):
 
 <pre><code><strong>//generate new private key
-</strong><strong>openssl req -new -newkey rsa:2048 -nodes -keyout pay_secret.key
+</strong><strong>openssl req -new -newkey rsa:2048 -nodes -keyout muse_secret.key
 </strong>
 //export public key from private key
-openssl rsa -in pay_secret.key -pubout
+openssl rsa -in muse_secret.key -pubout
 </code></pre>
 
 {% hint style="info" %}
 Make sure you keep the API secret key safe and secure!
 {% endhint %}
 
-**Then go to the dashboard and upload the public key.** MusePay will use your public key to verify the API calls.
+**Then go to the** [**dashboard**](https://agent.musepay.io) **and upload the public key.** MusePay will use your public key to verify the API calls.
 
-![](<.gitbook/assets/image (1).png>)
+<figure><img src=".gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
-**Also remember to download MusePay's public key** as you need to verify the notification from MusePay.
+**Also remember to download MusePay's public key** as you need it to verify API notifications.
 
 ## Signing a Request
 
@@ -73,7 +73,7 @@ sign=Base64Utils.encodeToString(sign(message,privateKey))
 
 <details>
 
-<summary>Code example(Java)</summary>
+<summary>Code example（JAVA）</summary>
 
 ```java
 // Some code
@@ -103,7 +103,7 @@ try {
 
 <details>
 
-<summary>Code example(Javascript)</summary>
+<summary>Code example（Javascript）</summary>
 
 ````java
 ```javascript
@@ -161,7 +161,7 @@ return this.axios({
 
 <details>
 
-<summary>Code example(PHP)</summary>
+<summary>Code example（PHP）</summary>
 
 ````java
 ```php
@@ -220,4 +220,3 @@ step 3: finally get the request data
 MusePay supports restriction of API calls to be accepted only from a specific IP address per API key. If you wish to whitelist your IP address, please contact our technical support with the IP of the machine running your API client and the matching API key.
 
 <br>
-

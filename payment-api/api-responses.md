@@ -8,7 +8,7 @@
 * **403** - `FORBIDDEN` - The API key's permissions doesn't match the needed permission to complete the request.
 * **404** - `RESOURCE_NOT_FOUND` - The requested resource doesn't exist.
 * **429** - `RATE_LIMIT_REACHED` - Too many requests. Blocked due to rate limiting.
-* **5XX** - Something went wrong on ToPay's end
+* **5XX** - Something went wrong on MusePay's end
 
 
 
