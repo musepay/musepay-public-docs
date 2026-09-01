@@ -20,12 +20,12 @@ Creates a quote for converting the source asset into the fiat currency received 
 | receive_amount | String | Conditional | Destination amount. Required when `quote_mode` is `dest`; must be greater than zero. |
 | beneficiary_country | String | Yes | Beneficiary country or region as an ISO 3166-1 alpha-2 code. |
 | beneficiary_bank_id | String | Yes | `bank_code` returned by [Supported Banks](./capabilities/banks.md). |
-| account_type | String | Yes | Beneficiary account type: `01` for an individual or `03` for an organization. |
+| account_type | String | Yes | Beneficiary account type: `PERSONAL` for an individual or `ENTERPRISE` for an organization. |
 | beneficiary_relationship | String | Yes | Beneficiary relationship: `own` or `third`. |
 | clear_network | String | Yes | Clearing network returned by [Supported Networks](./capabilities/networks.md). |
 | beneficiaryFields | Object | No | Bank-specific fields keyed by the values returned from [Required Beneficiary Fields](./capabilities/fields.md). The field name is case-sensitive. |
-| individual_beneficiary | Object | Conditional | Required when `account_type` is `01`. |
-| enterprise_beneficiary | Object | Conditional | Required when `account_type` is `03`. |
+| individual_beneficiary | Object | Conditional | Required when `account_type` is `PERSONAL`. |
+| enterprise_beneficiary | Object | Conditional | Required when `account_type` is `ENTERPRISE`. |
 
 Provide only the beneficiary object that matches `account_type`.
 
@@ -68,7 +68,7 @@ Additional field for `enterprise_beneficiary`:
   "receive_currency": "USD",
   "beneficiary_country": "US",
   "beneficiary_bank_id": "bank-1",
-  "account_type": "01",
+  "account_type": "PERSONAL",
   "beneficiary_relationship": "third",
   "clear_network": "ACH",
   "beneficiaryFields": {

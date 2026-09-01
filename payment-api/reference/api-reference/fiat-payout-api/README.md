@@ -20,7 +20,7 @@ A successful API response confirms that the request was accepted. Fiat payouts a
 | Capability discovery | Query the support endpoints before quoting because available routes and required fields can vary by country, currency, bank, and amount. |
 | Quote idempotency | Use a unique `request_id` for each quote request. Its scope includes the common `partner_id`. |
 | Quote required | Create the payout with the valid, unexpired `order_no` returned by the quote endpoint. Each quote can be confirmed only once. |
-| Beneficiary type | Use `individual_beneficiary` for `account_type=01` or `enterprise_beneficiary` for `account_type=03`. |
+| Beneficiary type | Use `individual_beneficiary` for `account_type=PERSONAL` or `enterprise_beneficiary` for `account_type=ENTERPRISE`. |
 | Dynamic fields | Send fields returned by `/supports/fields` in the case-sensitive `beneficiaryFields` object when creating a quote. |
 | Remittance purpose | Use a supported `purpose_code` and preserve leading zeroes. |
 | Asynchronous status | Creating a payout does not mean it has completed. Use the query API or order webhooks to obtain its final status. |
