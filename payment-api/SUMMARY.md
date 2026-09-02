@@ -9,6 +9,9 @@
 * [Card API](integration/card-api/README.md)
   * [How to Issue a Card](integration/card-api/how-to-issue-a-card.md)
   * [Card Transactions Verification](integration/card-api/card-transactions-verification.md)
+* [WebHook](webhook/README.md)
+  * [Order](webhook/order.md)
+  * [Card](webhook/card.md)
 
 ## Reference
 
@@ -43,11 +46,6 @@
   * [Scan Pay API](reference/api-reference/scan-pay-api/README.md)
     * [ScanPay](reference/api-reference/scan-pay-api/scanpay.md)
 
-***
-
-* [WebHook](webhook/README.md)
-  * [Order](webhook/order.md)
-  * [Card](webhook/card.md)
 * [API Responses](api-responses.md)
 * [Supported Assets](integration/supported-assets.md)
 * [Enums](enums/README.md)
