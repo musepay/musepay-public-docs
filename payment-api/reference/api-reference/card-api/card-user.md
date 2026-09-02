@@ -190,9 +190,10 @@ curl --location --request POST 'https://api.musepay.io/v1/carduser/create' \
 {
 "data":
    { 
-    "user_xid":"aabcdfsf",  //user external id       
+    "user_xid":"aabcdfsf",  //user external id
     "user_id":"8000123",    //user id
     "kyc_status":"0",
+    "kyc_level":"1",
     "email": "abc@abc.com",
     "phone_number": "2323",
     "last_name": "abc",
@@ -206,6 +207,12 @@ curl --location --request POST 'https://api.musepay.io/v1/carduser/create' \
 ```
 {% endtab %}
 {% endtabs %}
+
+#### Response Field
+
+| Name | Type | Description |
+| --- | --- | --- |
+| kyc\_level | String | The cardholder's current KYC level. |
 
 ## Upload User KYC
 

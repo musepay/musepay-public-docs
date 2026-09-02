@@ -1,4 +1,6 @@
-# multiple chain checkout
+# Multiple Chain Checkout
+
+Use `payment_method=on_line` with the generic `USDT` asset code. The hosted checkout page lets the user choose any supported USDT network.
 
 ## Example
 
@@ -9,7 +11,7 @@ curl --location --request POST '/v1/order/pay' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     * "request_id": "custom_code9982674851738108",
-    * "currency": "USDT_BSC", 
+    * "currency": "USDT",
     * "amount": "150",
     * "payment_method": "on_line",   
     * "product_name": "product info",
@@ -28,7 +30,7 @@ curl --location --request POST '/v1/order/pay' \
 --data-raw '{
     * "request_id": "custom_code9982674851738108",
     * "currency": "IDR",
-      "pay_currency": "USDT_BSC", 
+      "pay_currency": "USDT",
     * "amount": "21000",  //fiat amount
     * "payment_method": "on_line",   
     * "product_name": "product info",
@@ -48,7 +50,7 @@ curl --location --request POST '/v1/order/pay' \
     "request_id":"custom_code9982674851738108",
     "partner_id":"2000051",
     "order_no":"202406173100230009031352048",
-    "currency":"USDT_BSC",
+    "currency":"USDT",
     "order_amount":"30",
     "status":22,
     "payment_method":"on_line",

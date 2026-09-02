@@ -7,6 +7,7 @@
 
 * [Authentication](integration/authentication.md)
 * [Acquiring API](integration/acquiring-api/README.md)
+  * [Checkout Payment Methods](integration/acquiring-api/checkout-payment-methods.md)
   * [Checkout Payment Amount Handling](integration/acquiring-api/checkout-payment-amount-handling.md)
 * [Card API](integration/card-api/README.md)
   * [How to Issue a Card](integration/card-api/how-to-issue-a-card.md)
