@@ -15,12 +15,14 @@ Returns the bank-specific beneficiary fields required for a country, currency, a
 | country | String | Yes | Beneficiary country or region as an ISO 3166-1 alpha-2 code. |
 | currency | String | Yes | Receiving currency as an ISO 4217 currency code. |
 | bank_code | String | Yes | MusePay platform bank code returned by the supported banks endpoint. |
+| network | String | No | Clearing network (optional). For bank-type payees, pass the network chosen via the supported networks endpoint (e.g. `LOCAL_PAYMENT`/`SWIFT`) to scope the returned fields to that network. Omit for wallet-type payees or when no network is chosen; returns the full field set. |
 
 ```json
 {
   "country": "US",
   "currency": "USD",
-  "bank_code": "bank-1"
+  "bank_code": "bank-1",
+  "network": "LOCAL_PAYMENT"
 }
 ```
 
