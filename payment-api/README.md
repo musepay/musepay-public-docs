@@ -6,7 +6,7 @@ description: Build card, payment, funding, conversion, and payout experiences wi
 
 MusePay provides a unified set of REST APIs for embedding financial services into your product. Use the APIs to manage balances, convert assets, issue and manage cards, accept crypto payments, and create fiat payouts.
 
-You can build with MusePay programmatically while using the Agent Portal for operational tasks such as managing API access and funding your account. Webhooks keep your system informed about order and card events as they happen.
+You can build with MusePay programmatically while using the Partner Portal for operational tasks such as managing API access and funding your account. Webhooks keep your system informed about order and card events as they happen.
 
 ## What you can build
 
