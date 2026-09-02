@@ -6,9 +6,11 @@
 ## Integration
 
 * [Authentication](integration/authentication.md)
+* [Acquiring API](integration/acquiring-api/README.md)
 * [Card API](integration/card-api/README.md)
   * [How to Issue a Card](integration/card-api/how-to-issue-a-card.md)
   * [Card Transactions Verification](integration/card-api/card-transactions-verification.md)
+* [Fiat Payout API](integration/fiat-payout-api/README.md)
 * [WebHook](webhook/README.md)
   * [Order](webhook/order.md)
   * [Card](webhook/card.md)
