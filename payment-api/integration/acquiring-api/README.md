@@ -53,13 +53,18 @@ Checkout Mode creates a new payment context for each order. Your system creates 
 6. Use [Query Order](../../reference/api-reference/acquiring-api/query-order.md) to retrieve the latest order status when needed.
 
 {% hint style="info" %}
-Payments can be underpaid, overpaid, or received after the address expires. Base fulfillment on the webhook or query result rather than the initial create-order response.
+Payments can be underpaid, overpaid, or received after the address expires. Review [Checkout Payment Amount Handling](checkout-payment-amount-handling.md) before defining your fulfillment rules, and base fulfillment on the webhook or query result rather than the initial create-order response.
 {% endhint %}
+
+{% content-ref url="checkout-payment-amount-handling.md" %}
+[Checkout Payment Amount Handling](checkout-payment-amount-handling.md)
+{% endcontent-ref %}
 
 ## Related references
 
 * [Supported Assets](../supported-assets.md)
 * [Wallet Mode endpoints](../../reference/api-reference/acquiring-api/wallet-mode.md)
 * [Checkout Mode endpoint](../../reference/api-reference/acquiring-api/checkout-mode/README.md)
+* [Checkout Payment Amount Handling](checkout-payment-amount-handling.md)
 * [Order webhook](../../webhook/order.md)
 * [Order statuses](../../enums/order-status.md)
