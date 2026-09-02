@@ -18,6 +18,28 @@ The MusePay API follows REST conventions. Endpoints use resource-oriented URLs, 
 Keep private keys in a secure server-side environment. Never expose them in browser or mobile application code.
 {% endhint %}
 
-## Building a card program?
+## Choose an integration
 
-Use the [Card API integration guide](integration/card-api/README.md) for the end-to-end workflow, then consult the Card API reference for endpoint details.
+### Acquiring API
+
+Accept crypto payments using either a reusable address for each user with Wallet Mode or a temporary address for each order with Checkout Mode. The guide also covers multi-chain checkout, specified-chain checkout, payment amount differences, and webhook-based reconciliation.
+
+{% content-ref url="integration/acquiring-api/" %}
+[Acquiring API Integration](integration/acquiring-api/)
+{% endcontent-ref %}
+
+### Card API
+
+Create cardholders, issue and manage cards, fund card accounts, and handle card transaction verification. Follow the integration workflows first, then use the Card API Reference for endpoint details.
+
+{% content-ref url="integration/card-api/" %}
+[Card API Integration](integration/card-api/)
+{% endcontent-ref %}
+
+### Fiat Payout API
+
+Send fiat currency from your USDT balance to third-party bank accounts. The integration guide explains how to discover supported routes, create a quote, submit the payout, and track its asynchronous status.
+
+{% content-ref url="integration/fiat-payout-api/" %}
+[Fiat Payout API Integration](integration/fiat-payout-api/)
+{% endcontent-ref %}
