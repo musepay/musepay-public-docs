@@ -18,6 +18,10 @@ pay_amount = order_amount
 
 We recommend allowing orders to succeed when a user pays less or more than the order amount. When underpayments and overpayments are accepted, MusePay processes the amount actually received, sends it in the [order webhook](../../webhook/order.md), and credits the resulting net amount to your merchant balance.
 
+{% hint style="info" %}
+To enable underpayments and overpayments, contact the MusePay Operations Team to configure this option for your account.
+{% endhint %}
+
 The webhook amount fields have the following meanings:
 
 | Field | Meaning |
@@ -51,9 +55,15 @@ The webhook reports these values, and MusePay credits `98.01 USDT` to your merch
 
 ## Choose your user-crediting policy
 
-MusePay credits the merchant balance based on the payment received. Your system remains responsible for deciding whether and how to credit the end user. Common approaches include:
+MusePay credits the merchant balance based on the payment received. Your system remains responsible for deciding whether and how to credit the end user.
 
-### Require an exact payment
+Common approaches include:
+
+{% hint style="info" %}
+Choose one of the following mutually exclusive policies for each Checkout flow. These policies are alternatives and should not be applied cumulatively.
+{% endhint %}
+
+### Option 1: Require an exact payment
 
 Credit the user only when the two amounts match:
 
@@ -61,7 +71,7 @@ Credit the user only when the two amounts match:
 pay_amount = order_amount
 ```
 
-### Allow a configured tolerance
+### Option 2: Allow a configured tolerance
 
 Credit the user only when the absolute difference is within a limit defined by your business:
 
@@ -69,7 +79,7 @@ Credit the user only when the absolute difference is within a limit defined by y
 abs(pay_amount - order_amount) <= configured tolerance
 ```
 
-### Credit the amount actually paid
+### Option 3: Credit the amount actually paid
 
 Credit the user according to `pay_amount`, regardless of the original `order_amount`.
 
