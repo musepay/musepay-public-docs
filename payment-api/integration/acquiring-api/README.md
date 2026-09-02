@@ -4,13 +4,13 @@ description: Choose and integrate the MusePay crypto acquiring mode that fits yo
 
 # Acquiring API
 
-MusePay supports two crypto acquiring modes. Choose **Dedicated User Address** when each user needs a reusable deposit address, or **Per-Order Address Allocation** when your system creates a payment order before every payment.
+MusePay supports two crypto acquiring modes. Choose **Wallet Mode (Dedicated User Address)** when each user needs a reusable deposit address, or **Checkout Mode (Per-Order Address Allocation)** when your system creates a payment order before every payment.
 
 Both modes notify your system after a deposit is detected. The main difference is when you create the local order and how long the receiving address remains associated with the payment context.
 
 ## Choose an integration mode
 
-| | Dedicated User Address | Per-Order Address Allocation |
+| | Wallet Mode (Dedicated User Address) | Checkout Mode (Per-Order Address Allocation) |
 | --- | --- | --- |
 | Address allocation | One fixed address for each user | One temporary address for each order |
 | Address lifetime | Reusable for future deposits | Valid for one day by default |
@@ -18,9 +18,9 @@ Both modes notify your system after a deposit is detected. The main difference i
 | Amount handling | Credit the actual amount reported by MusePay | Reconcile the deposit against the amount in the order |
 | Best suited for | Wallet top-ups, stored balances, recurring users | E-commerce checkout and one-time payments |
 
-## Dedicated User Address
+## Wallet Mode (Dedicated User Address)
 
-Dedicated User Address assigns a fixed deposit address to each user. The user can deposit to that address at any time. After MusePay detects and confirms the deposit, it sends your system an order webhook with the received amount. Your system then creates a local order and credits the user's balance.
+Wallet Mode assigns a fixed deposit address to each user. The user can deposit to that address at any time. After MusePay detects and confirms the deposit, it sends your system an order webhook with the received amount. Your system then creates a local order and credits the user's balance.
 
 <figure><img src="../../.gitbook/assets/acquiring-wallet-mode.png" alt="Dedicated User Address flow"><figcaption>One reusable deposit address is associated with each user.</figcaption></figure>
 
@@ -37,9 +37,9 @@ Dedicated User Address assigns a fixed deposit address to each user. The user ca
 Treat webhook processing as idempotent. The same event must not credit a user's balance more than once.
 {% endhint %}
 
-## Per-Order Address Allocation
+## Checkout Mode (Per-Order Address Allocation)
 
-Per-Order Address Allocation, documented as [Checkout Mode](../../reference/api-reference/acquiring-api/checkout-mode/README.md) in the API Reference, creates a new payment context for each order. Your system creates the order first, and MusePay returns a temporary receiving address that is valid for one day by default. MusePay sends an order webhook after the user deposits.
+Checkout Mode creates a new payment context for each order. Your system creates the order first, and MusePay returns a temporary receiving address that is valid for one day by default. MusePay sends an order webhook after the user deposits.
 
 <figure><img src="../../.gitbook/assets/acquiring-order-mode.png" alt="Per-Order Address Allocation flow"><figcaption>Each order receives its own temporary payment address.</figcaption></figure>
 
@@ -59,7 +59,7 @@ Payments can be underpaid, overpaid, or received after the address expires. Base
 ## Related references
 
 * [Supported Assets](../supported-assets.md)
-* [Dedicated User Address endpoints (Wallet Mode)](../../reference/api-reference/acquiring-api/wallet-mode.md)
+* [Wallet Mode endpoints](../../reference/api-reference/acquiring-api/wallet-mode.md)
 * [Checkout Mode endpoint](../../reference/api-reference/acquiring-api/checkout-mode/README.md)
 * [Order webhook](../../webhook/order.md)
 * [Order statuses](../../enums/order-status.md)
