@@ -6,6 +6,7 @@
 ## Integration
 
 * [Authentication](integration/authentication.md)
+* [IP Whitelisting](integration/ip-whitelisting.md)
 * [Acquiring API](integration/acquiring-api/README.md)
   * [Checkout Payment Methods](integration/acquiring-api/checkout-payment-methods.md)
   * [Checkout Payment Amount Handling](integration/acquiring-api/checkout-payment-amount-handling.md)

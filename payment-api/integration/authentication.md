@@ -213,10 +213,3 @@ step 3: finally get the request data
 
 ```
 {% endcode %}
-
-## IP Whitelisting
-
-\
-MusePay supports restriction of API calls to be accepted only from a specific IP address per API key. If you wish to whitelist your IP address, please contact our technical support with the IP of the machine running your API client and the matching API key.
-
-<br>
