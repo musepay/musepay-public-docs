@@ -2,7 +2,7 @@
 
 This document describes the workflow for verifying card transactions via webhook integration. It outlines how partners can receive transaction verification messages and interact with clients to complete the verification process.
 
-<figure><img src=".gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
 ### Workflow Overview
 
@@ -34,8 +34,8 @@ The Partner System forwards the verification message to the client:
 1. The client receives the verification request via the Partner System.
 2. The client confirms or declines the transaction.
 3. The Partner System sends the result to MuseCard via API:
-   * POST [/txn-verification-confirm](reference/api-reference/card-api/card.md#confirm-transaction) — to confirm the transaction.
-   * POST [/txn-verification-decline](reference/api-reference/card-api/card.md#reject-transaction) — to decline the transaction.
+   * POST [/txn-verification-confirm](../../reference/api-reference/card-api/card.md#confirm-transaction) — to confirm the transaction.
+   * POST [/txn-verification-decline](../../reference/api-reference/card-api/card.md#reject-transaction) — to decline the transaction.
 4. MuseCard processes the response and sends the result to VISA via callback.
 
 ***
@@ -45,4 +45,3 @@ The Partner System forwards the verification message to the client:
 * All webhook events are sent to the Partner System in real time.
 * The Partner System is responsible for delivering the message to the client.
 * Timely processing of verification responses is crucial to avoid transaction delays.
-

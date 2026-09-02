@@ -2,9 +2,14 @@
 
 * [Introduction](README.md)
 * [Getting Started](getting-started.md)
-* [Supported Assets](supported-assets.md)
-* [How to Issue a Card](how-to-issue-a-card.md)
-* [Card Transactions Verification](card-transactions-verification.md)
+
+## Integration
+
+* [Authentication](integration/authentication.md)
+* [Supported Assets](integration/supported-assets.md)
+* [Card API](integration/card-api/README.md)
+  * [How to Issue a Card](integration/card-api/how-to-issue-a-card.md)
+  * [Card Transactions Verification](integration/card-api/card-transactions-verification.md)
 
 ## Reference
 

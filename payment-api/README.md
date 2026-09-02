@@ -1,23 +1,37 @@
 ---
-description: Integrate MusePay's card, funding, acquiring, payout, and conversion APIs.
+description: Build card, payment, funding, conversion, and payout experiences with MusePay APIs.
 ---
 
 # Introduction
 
-Welcome to the MusePay API documentation. MusePay provides REST APIs for managing funds, converting assets, issuing and managing cards, accepting payments, and creating fiat payouts.
+MusePay provides a unified set of REST APIs for embedding financial services into your product. Use the APIs to manage balances, convert assets, issue and manage cards, accept crypto payments, and create fiat payouts.
 
-This documentation covers the shared authentication model and common parameters used across the platform, followed by detailed references for each API product.
+You can build with MusePay programmatically while using the Agent Portal for operational tasks such as managing API access and funding your account. Webhooks keep your system informed about order and card events as they happen.
 
-## Getting Started
+## What you can build
 
-Access to MusePay APIs is authenticated using an API access key combined with cryptographically signed requests.
+* **Card programs:** Create cardholders, issue and manage cards, fund card accounts, and verify card transactions.
+* **Crypto payment acceptance:** Create payment orders in wallet or checkout mode and track their status.
+* **Funds and conversion:** Query partner balances, rates, and fees, then convert supported assets.
+* **Fiat payouts:** Discover payout capabilities, request a quote, create a payout, and query its status.
+* **Scan payments:** Integrate QR-based payment flows through the Scan Pay API.
+
+## Start integrating
+
+Begin with the quick-start path, then use the integration guides for implementation workflows and the API Reference for endpoint-level details.
 
 {% content-ref url="getting-started.md" %}
-[getting-started.md](getting-started.md)
+[Getting Started](getting-started.md)
 {% endcontent-ref %}
 
-Additionally, you can view the API documentation:
+{% content-ref url="integration/authentication.md" %}
+[Authentication](integration/authentication.md)
+{% endcontent-ref %}
+
+{% content-ref url="integration/card-api/" %}
+[Card API Integration](integration/card-api/)
+{% endcontent-ref %}
 
 {% content-ref url="reference/api-reference/" %}
-[api-reference](reference/api-reference/)
+[API Reference](reference/api-reference/)
 {% endcontent-ref %}
